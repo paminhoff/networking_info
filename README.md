@@ -1,1 +1,53 @@
 # networking_info
+
+## IP to ASN Lookup 
+
+A Python script that converts IP addresses to ASN (Autonomous System Number) information using a local IPtoASN database.
+
+### Features
+
+- Fast offline lookups using a local TSV/CSV database
+- Handles both IPv4 and IPv6 addresses
+- Outputs ASN, country code, and organization name
+- Processes bulk IPs from a file
+- Optimized with binary search for performance
+
+### Requirements
+
+- Python 3.6+
+- `ipaddress` module (standard library)
+
+### Usage
+
+1. First download the IPtoASN database:
+   ```bash
+   wget https://iptoasn.com/data/ip2asn-v4.tsv.gz
+   gunzip ip2asn-v4.tsv.gz
+   tr '\t' ',' < ip2asn-v4.tsv > ip2asn-v4.csv
+   ```
+2. Run the script:
+   ```bash
+   python3 ip_2_asn_local.py input_ips.txt output.csv
+   ```
+
+### Input/Output formats
+**Inputs:** Text file with one IP address per line
+**Output:** CSV with columns `IP, ASN, Country, Organization`
+
+### Example
+
+**Input**
+```bash
+echo -e "1.1.1.1\n8.8.8.8" > ips.txt
+python3 ip_2_asn_local.py ips.txt ips2asnresults.csv
+```
+**output (ips2asnresults.csv)**
+```bash
+IP,ASN,Country,Organization
+1.1.1.1,13335,US,CLOUDFLARENET
+8.8.8.8,15169,US,GOOGLE
+```
+### Notes
+- The database file should be converted from ip2asn-v4.tsv or ip2asn-v4.csv `tr '\t' ',' < ip2asn-v4.tsv > ip2asn-v4.csv`
+- Invalid IPs are automatically skipped
+- For large datasets, processing may take a few minutes
