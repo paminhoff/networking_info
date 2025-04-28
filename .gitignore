@@ -65,3 +65,5 @@ venv
 .vscode/
 .idea/
 .idea/*
+.vscode
+.vscode/settings.json
