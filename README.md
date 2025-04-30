@@ -51,3 +51,13 @@ IP,ASN,Country,Organization
 - The database file should be converted from ip2asn-v4.tsv or ip2asn-v4.csv `tr '\t' ',' < ip2asn-v4.tsv > ip2asn-v4.csv`
 - Invalid IPs are automatically skipped
 - For large datasets, processing may take a few minutes
+
+### IP to /24 Networks Converter
+
+**`subnet_list/ip_to_networks.py`**  
+Converts a list of IP addresses to their containing `/24` networks.  
+
+Usage:  
+```bash
+python ip_to_networks.py -s input_ips.txt -o output_networks.txt
+```
