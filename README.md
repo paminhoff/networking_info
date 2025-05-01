@@ -1,6 +1,6 @@
 # networking_info
 
-## IP to ASN Lookup 
+## IP to ASN Lookup (find_asn/)
 
 A Python script that converts IP addresses to ASN (Autonomous System Number) information using a local IPtoASN database.
 
@@ -52,7 +52,7 @@ IP,ASN,Country,Organization
 - Invalid IPs are automatically skipped
 - For large datasets, processing may take a few minutes
 
-## FQDN to ASN Lookup Tool
+## FQDN to ASN Lookup Tool (find_asn/)
 Resolves domain names to IP addresses and identifies network ownership using ASN data.
 
 ### Usage
@@ -75,7 +75,7 @@ example.com,93.184.216.34,US,"CDN Example Corp"
 bad.domain,Unresolved,N/A,N/A
 ```
 
-## IP to /24 Networks Converter
+## IP to /24 Networks Converter (subnet_list/)
 
 **`subnet_list/ip_to_networks.py`**  
 Converts a list of IP addresses to their containing `/24` networks.  
@@ -84,4 +84,12 @@ Usage:
 ```bash
 python ip_to_networks.py -s input_ips.txt -o output_networks.txt
 ```
+## Find hosts (recon/)
+- The script uses multiple NMAP discovery techniques (-PE, -PS, -PA, -PP) to avoid false negatives due to ICMP blocking.
+- Provide --nmap-path, NMAP path, 
+- Need to provide a source list in CIDR notation
+- The output CSV will have three columns: CIDR, Status (either "live" or "dead"), and hosts found in array format.
 
+```bash
+sudo python3 find_hosts.py -i cidr.txt -o results.csv -n '/opt/rapid7/nexpose/nse/nmap/nmap'
+```
