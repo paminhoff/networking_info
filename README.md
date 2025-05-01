@@ -52,7 +52,30 @@ IP,ASN,Country,Organization
 - Invalid IPs are automatically skipped
 - For large datasets, processing may take a few minutes
 
-### IP to /24 Networks Converter
+## FQDN to ASN Lookup Tool
+Resolves domain names to IP addresses and identifies network ownership using ASN data.
+
+### Usage
+```bash
+python fqdn_to_asn.py -i domains.txt -o results.csv
+```
+### Arguments
+|Flag|	Description|	Default|
+|------ |----------- |----------- |
+|`-i`|	Input file (one FQDN per line)|	Required|
+|`-o`|	Output CSV file path|	Required|
+|`-d`|	ASN database path	ip2asn-v4.csv|Required|
+
+<sub><sup>See ip_2_asn.py documentation for information on downloading the ASN DB</sup></sub> 
+
+### Sample output
+```csv
+FQDN,Resolved IP,Country,Org
+example.com,93.184.216.34,US,"CDN Example Corp"
+bad.domain,Unresolved,N/A,N/A
+```
+
+## IP to /24 Networks Converter
 
 **`subnet_list/ip_to_networks.py`**  
 Converts a list of IP addresses to their containing `/24` networks.  
@@ -61,3 +84,4 @@ Usage:
 ```bash
 python ip_to_networks.py -s input_ips.txt -o output_networks.txt
 ```
+
